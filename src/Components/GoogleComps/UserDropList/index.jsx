@@ -1,21 +1,37 @@
 import "./UserDropList.css";
-import { gapi } from "gapi-script";
+import { useState, useRef, useEffect } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import SignoutBtn from "../GoogleBtns/SignoutBtn";
 
-const UserDropList = () => {
-  const auth = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+const UserDropList = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const btnRef = useRef();
+
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if (e.path[1] !== btnRef.current) setIsOpen(false);
+    };
+    document.body.addEventListener("click", closeDropdown);
+
+    return () => document.body.removeEventListener("click", closeDropdown);
+  }, []);
 
   return (
     <div className="Dropdown">
-      <button type="button" className="DropdownBtn">
-        <img className="BtnImg" src={auth.hK} alt="user" />
+      <button
+        ref={btnRef}
+        type="button"
+        className="DropdownBtn"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <img className="BtnImg" src={props.user.hK} alt="user" />
       </button>
-      <div className="DropdownList">
+      <div className={`${isOpen ? "DropdownList" : "hidden"}`}>
         <div className="py-3 px-4">
-          <span className="UserName">{auth.Ad}</span>
-          <span className="UserEmail">{auth.cu}</span>
+          <span className="UserName">{props.user.Ad}</span>
+          <span className="UserEmail">{props.user.cu}</span>
         </div>
         <ul className="py-1" aria-labelledby="user-menu-button">
           <li>
@@ -32,4 +48,8 @@ const UserDropList = () => {
   );
 };
 
-export default UserDropList;
+const mapStateToProps = (state) => {
+  return { user: state.auth.user };
+};
+
+export default connect(mapStateToProps)(UserDropList);
