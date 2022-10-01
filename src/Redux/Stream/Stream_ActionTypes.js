@@ -1,0 +1,15 @@
+const CREATE_STREAM = "CREATE_STREAM";
+const FETCH_STREAMS = "FETCH_STREAMS";
+const FETCH_STREAM = "FETCH_STREAM";
+const EDIT_STREAM = "EDIT_STREAM";
+const DELETE_STREAM = "DELETE_STREAM";
+
+const streamActionTypes = {
+  CREATE_STREAM,
+  FETCH_STREAMS,
+  FETCH_STREAM,
+  EDIT_STREAM,
+  DELETE_STREAM,
+};
+
+export default streamActionTypes;
