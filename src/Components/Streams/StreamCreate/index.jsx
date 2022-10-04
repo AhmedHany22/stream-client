@@ -1,9 +1,12 @@
-import { Field, reduxForm } from "redux-form";
 import "./StreamCreate.css";
+
+import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
+import { createStream } from "./../../../Redux/Stream/Stream_ActionCreator";
 
 const StreamCreate = (props) => {
   const mySubmit = (formValues) => {
-    console.log(formValues);
+    props.createStream(formValues);
   };
 
   return (
@@ -72,4 +75,8 @@ const validate = (formValues) => {
 
 // The {form} property is the name of this Form
 // The reduxForm 'll send a punsh of props to the component
-export default reduxForm({ form: "StreamCreation", validate })(StreamCreate);
+const formWrapped = reduxForm({ form: "StreamCreation", validate })(
+  StreamCreate
+);
+
+export default connect(null, { createStream })(formWrapped);
