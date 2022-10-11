@@ -1,6 +1,6 @@
 import "./GoogleBtns.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Fragment } from "react";
 import { gapi } from "gapi-script";
 
@@ -24,7 +24,6 @@ const SignoutBtn = () => {
       <button onClick={onSignoutClick} className="SignoutBtn">
         Log Out
       </button>
-      <ToastContainer />
     </Fragment>
   );
 };

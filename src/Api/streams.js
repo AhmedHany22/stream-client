@@ -1,5 +1,5 @@
 import Axios from "axios";
 
 export default Axios.create({
-  baseURL: "http://localhost:3001/",
+  baseURL: "https://streamly-json-server.herokuapp.com/",
 });

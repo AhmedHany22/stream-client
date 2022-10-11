@@ -1,6 +1,6 @@
 import "./GoogleBtns.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Fragment } from "react";
 import { gapi } from "gapi-script";
 
@@ -10,10 +10,16 @@ const SigninBtn = () => {
       theme: "colored",
       autoClose: 5000,
     });
+  const onSuccess = () =>
+    toast.success("Logged Out", {
+      theme: "colored",
+      autoClose: 3000,
+    });
 
   const onSigninClick = () => {
     try {
       gapi.auth2.getAuthInstance().signIn();
+      onSuccess();
     } catch (error) {
       onFailure();
     }
@@ -24,7 +30,6 @@ const SigninBtn = () => {
       <button onClick={onSigninClick} className="SigninBtn">
         Log In
       </button>
-      <ToastContainer />
     </Fragment>
   );
 };

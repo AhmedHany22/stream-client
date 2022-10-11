@@ -1,0 +1,7 @@
+.ListRouteContainer {
+  @apply pt-28 bg-zinc-900 min-h-screen box-border;
+}
+
+.ListContainer {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 place-items-center;
+}

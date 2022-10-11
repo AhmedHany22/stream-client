@@ -1,5 +1,5 @@
 .FormContainer {
-  @apply px-24 pt-28 bg-zinc-900 h-full box-border;
+  @apply px-24 pt-28 bg-zinc-900 h-screen box-border;
 }
 .Form {
   @apply px-16 py-12 bg-zinc-800 rounded;
