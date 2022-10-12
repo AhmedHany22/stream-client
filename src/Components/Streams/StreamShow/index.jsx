@@ -27,12 +27,6 @@ const StreamShow = (props) => {
   useEffect(() => {
     props.fetchStream(id);
     buildPlayer();
-
-    return () => {
-      if (player) {
-        player.destroy();
-      }
-    };
   }, []);
 
   useEffect(() => {
